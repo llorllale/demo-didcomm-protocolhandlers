@@ -1,0 +1,16 @@
+<html>
+<head>
+    <script>
+        function register() {
+            navigator.registerProtocolHandler(
+                "web+didcomm",
+                "https://localhost:8081?msg=%s",
+                "Agents-R-Us"
+            );
+        }
+    </script>
+</head>
+<body>
+    <button onclick="register()">Register</button>
+</body>
+</html>
