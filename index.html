@@ -2,15 +2,46 @@
 <head>
     <script>
         function register() {
+            const url = "https://llorllale.github.io/demo-didcomm-protocol-handlers"
             navigator.registerProtocolHandler(
                 "web+didcomm",
-                "https://llorllale.github.io/demo-protocolhandlers?msg=%s",
+                url + "?msg=%s",
                 "Agents-R-Us"
             );
+        }
+
+        window.onload = () => {
+            const url = window.location.href
+            if (url.indexOf("?") > -1) {
+                document.querySelector("#register").style.display = "none"
+                const docbody = document.getElementsByTagName("body").item(0)
+                const table = document.createElement("table")
+                table.setAttribute("border", "1")
+                const head = table.createTHead()
+                const row = head.insertRow()
+                row.insertCell().innerHTML = "<strong>param<strong>"
+                row.insertCell().innerHTML = "<strong>value</strong>"
+                const body = table.createTBody()
+                url.substr(url.lastIndexOf("?")+1).split("&").forEach(param => {
+                    const kv = param.split("=")
+                    const row = body.insertRow()
+                    row.insertCell().innerHTML = kv[0]
+                    row.insertCell().innerHTML = kv[1]
+                })
+                docbody.appendChild(table)
+            }
         }
     </script>
 </head>
 <body>
-    <button onclick="register()">Register</button>
+    <h1>DIDComm Protocol Handlers Demo</h1>
+    <a href="https://llorllale.github.io/talk-didcomm-protocolhandlers">didcomm:// protocol handlers</a>.
+    <p>
+        <div id="register">
+    First register this domain as your 'web+didcomm' handler:<p>
+    <button onclick="register()">Register</button><p>
+    </div>
+        <strong>Download</strong> <a href="othersite/index.html">othersite/index.html</a> and open it in your browser.<p>
+        Clicking on the link over there will redirect you here and you will see the query parameters below:<p>
 </body>
 </html>

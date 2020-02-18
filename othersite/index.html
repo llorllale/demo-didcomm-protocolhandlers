@@ -1,0 +1,17 @@
+<html>
+<head>
+    <script>
+        function connect() {
+            var url = "https://llorllale.github.io/demo-didcomm-protocol-handlers?" + document.querySelector("#params").value
+            window.location.href = url
+        }
+    </script>
+</head>
+<body>
+Demo for <a href="https://llorllale.github.io/talk-didcomm-protocolhandlers">didcomm:// protocol handlers</a>.
+<p>
+    <label for="params">params: </label><textarea id="params"></textarea>
+    <p>
+    <button onclick="connect()">Connect</button>
+</body>
+</html>
